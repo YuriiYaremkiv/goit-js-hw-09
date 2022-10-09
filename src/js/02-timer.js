@@ -17,8 +17,8 @@ flatpickr(refs.input, {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose: selectedDates => {
-    if (selectedDates[0] < Date.now()) {
+  onClose: (selectedDates, dateStr) => {
+    if (dateStr < Date.now()) {
       Notiflix.Report.warning(
         'Warning',
         'Please choose a date in the future',
@@ -44,6 +44,11 @@ function timer() {
 
   if (time < 1000) {
     clearInterval(timeId);
+    Notiflix.Report.info(
+        'Info',
+        'Time is over',
+        'Close',
+    );
   }
 
   updateClockFace(convertMs(time));
