@@ -5,7 +5,7 @@ const refs = {
     btnReset: document.querySelector('button[data-reset]'),
 }
 
-let changeIsActive = false;
+let timerChangeColor = null;
 
 refs.btnStop.setAttribute('disabled', true);
 refs.btnReset.setAttribute('disabled', true);
