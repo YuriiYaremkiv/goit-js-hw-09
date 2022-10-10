@@ -18,7 +18,7 @@ flatpickr(refs.input, {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose: (selectedDates, dateStr) => {
-    if (dateStr < Date.now()) {
+    if (new Date(refs.input.value) < Date.now()) {
       Notiflix.Report.warning(
         'Warning',
         'Please choose a date in the future',
@@ -44,11 +44,7 @@ function timer() {
 
   if (time < 1000) {
     clearInterval(timeId);
-    Notiflix.Report.info(
-        'Info',
-        'Time is over',
-        'Close',
-    );
+    Notiflix.Report.info('Info', 'Time is over', 'Close');
   }
 
   updateClockFace(convertMs(time));
@@ -68,7 +64,7 @@ function changeDate() {
   if (new Date(refs.input.value) > Date.now()) {
     refs.btnStart.removeAttribute('disabled');
   }
-  
+
   for (let value of refs.values) {
     value.textContent = '00';
   }
